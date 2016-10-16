@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,15 @@ public class MainActivity extends Activity {
         btnCalc = (Button) findViewById(R.id.btnCalc);
         tvFare = (TextView) findViewById(R.id.tvFare);
 
+        //Retrieve saved data and set it here
+
+        SharedPreferences savedPrefs = getPreferences(MODE_PRIVATE);
+        float savedKm = savedPrefs.getFloat("km", 0.0f);
+        int savedMin = savedPrefs.getInt("min", 0);
+
+        etKm.setText(String.valueOf(savedKm));
+        etMin.setText(String.valueOf(savedMin));
+
         btnSecAct = (Button) findViewById(R.id.btnSecAct);
         btnSensorAct = (Button) findViewById(R.id.btnSensor);
 
@@ -42,6 +52,16 @@ public class MainActivity extends Activity {
                 int min = Integer.valueOf(etMin.getText().toString());
 
                 float fare = calculateFare(km, min);
+
+                //Saving the data to SharedPreferences
+
+                SharedPreferences sPref = getPreferences(MODE_PRIVATE);
+                SharedPreferences.Editor prefEditor = sPref.edit();
+                prefEditor.putFloat("km", km);
+                prefEditor.putInt("min", min);
+                prefEditor.putFloat("fare", fare);
+                prefEditor.apply();
+
 
                 tvFare.setText("Rs. " + String.valueOf(fare));
 
