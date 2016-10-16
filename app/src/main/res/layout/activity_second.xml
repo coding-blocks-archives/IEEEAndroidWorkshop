@@ -10,4 +10,45 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.codingblocks.ieeeworkshopapp.SecondActivity">
 
+    <TextView
+        android:text="Lat"
+        android:textSize="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:visibility="invisible"
+        android:id="@+id/tvLat" />
+
+    <TextView
+        android:text="Long"
+        android:textSize="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLat"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:visibility="invisible"
+        android:id="@+id/tvLong" />
+
+    <TextView
+        android:text="Dist"
+        android:textSize="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLong"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="81dp"
+        android:id="@+id/tvDistance" />
+
+    <TextView
+        android:text="Time"
+        android:textSize="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDistance"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/tvTime" />
 </RelativeLayout>
