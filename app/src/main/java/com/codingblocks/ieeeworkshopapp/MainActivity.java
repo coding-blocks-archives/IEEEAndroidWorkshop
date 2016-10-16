@@ -6,13 +6,23 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class MainActivity extends Activity {
+
+    public static final String TAG = "Main";
 
     EditText etKm, etMin;
 
@@ -61,6 +71,20 @@ public class MainActivity extends Activity {
                 prefEditor.putInt("min", min);
                 prefEditor.putFloat("fare", fare);
                 prefEditor.apply();
+
+                String dataToSave = "Km = " + km
+                        + "\n"
+                        + "Min = " + min
+                        + "\n"
+                        + "Fare = Rs. " + fare;
+
+
+                try {
+                    saveToFile("myfile.txt", dataToSave);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this, "Could not save file", Toast.LENGTH_SHORT).show();
+                }
 
 
                 tvFare.setText("Rs. " + String.valueOf(fare));
@@ -124,6 +148,36 @@ public class MainActivity extends Activity {
         }
 
         return fare;
+    }
+
+    void saveToFile(String fileName, String data) throws IOException {
+        Log.d(TAG, "saveToFile: " + Environment.getExternalStorageDirectory().getAbsolutePath());
+
+        File sdcardDir = Environment.getExternalStorageDirectory();
+        File myFile = new File(sdcardDir, fileName);
+
+        if (sdcardDir.isDirectory()) {
+            if (myFile.exists()) {
+                myFile.delete();
+            }
+            myFile.createNewFile();
+        }
+
+        FileOutputStream fileOutputStream = new FileOutputStream(myFile);
+        fileOutputStream.write(data.getBytes());
+        fileOutputStream.close();
+    }
+
+    String readFromFile(String fileName) throws IOException {
+        File sdcardDir = Environment.getExternalStorageDirectory();
+        File myFile = new File(sdcardDir, fileName);
+
+        FileInputStream fiStream = new FileInputStream(myFile);
+        byte[] buffer = new byte[8];
+        while(buffer != null) {
+            fiStream.read(buffer);
+        }
+        return null;
     }
 
 
