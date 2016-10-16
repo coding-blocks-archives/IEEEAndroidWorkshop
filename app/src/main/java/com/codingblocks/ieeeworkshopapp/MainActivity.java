@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 
     EditText etKm, etMin;
 
-    Button btnCalc, btnSecAct, btnSensorAct;
+    Button btnCalc, btnSecAct, btnSensorAct, btnInternet;
 
     TextView tvFare;
 
@@ -53,6 +53,7 @@ public class MainActivity extends Activity {
 
         btnSecAct = (Button) findViewById(R.id.btnSecAct);
         btnSensorAct = (Button) findViewById(R.id.btnSensor);
+        btnInternet = (Button) findViewById(R.id.btnInternet);
 
 
         btnCalc.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +131,14 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent i2 = new Intent(MainActivity.this, SensorActivity.class);
                 startActivity(i2);
+            }
+        });
+
+        btnInternet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i3 = new Intent(MainActivity.this, InternetActivity.class);
+                startActivity(i3);
             }
         });
     }
