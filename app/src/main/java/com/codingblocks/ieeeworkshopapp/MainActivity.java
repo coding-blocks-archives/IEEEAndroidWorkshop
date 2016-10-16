@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
 
     EditText etKm, etMin;
 
-    Button btnCalc, btnSecAct;
+    Button btnCalc, btnSecAct, btnSensorAct;
 
     TextView tvFare;
 
@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
         tvFare = (TextView) findViewById(R.id.tvFare);
 
         btnSecAct = (Button) findViewById(R.id.btnSecAct);
+        btnSensorAct = (Button) findViewById(R.id.btnSensor);
 
 
         btnCalc.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +78,14 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(i);
+            }
+        });
+
+        btnSensorAct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i2 = new Intent(MainActivity.this, SensorActivity.class);
+                startActivity(i2);
             }
         });
     }
